@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block Titulo %} Libros{% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header bg-dark bg-gradient">
+       <a name="" id="" class="btn btn-success bg-gradient" href="{% url 'crear' %}"  role="button">CREAR LIBROS</a>
+    </div>
+    <div class="card-body bg-secondary bg-gradient ">
+        <h2 class="card-title">LIBROS</h2>
+        
+         <table>
+             <thead>
+                 <tr>
+                     <th>ID</th>
+                     <th>TITULO</th>
+                     <th>IMAGEN</th>
+                     <th>DESCRIPCION</th>
+                     <th>ACCIONES</th>
+                 </tr>
+             </thead>
+             <tbody class="text-light">
+                 {% for libro in libros %}
+                 <tr>
+                    <td>{{libro.id}}</td>
+                     <td>{{libro.nombre}}</td>
+                     <td> {{libro.imagenes}}  </td>
+                     <td>{{libro.descripcion}}</td>
+                    <td> 
+                        <a name="" id="" class="btn btn-warning bg-gradient text-white" href="{% url 'editar' libro.id %}"  role="button">EDITAR LIBROS</a>
+                        | 
+                        <a name="" id="" class="btn btn-danger bg-gradient" href="{% url 'eliminar' libro.id %}"  role="button">ELIMINAR LIBROS</a>
+                    </td>
+                 </tr>
+                 {% endfor %} 
+             </tbody>
+         </table> 
+    </div> 
+</div>
+{% endblock %}
+ 
