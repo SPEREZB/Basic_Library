@@ -1,0 +1,24 @@
+{% csrf_token %}
+{% block alert %}
+         {% if messages %}
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show d-flex align-items-center" role="alert">
+
+                {% if message.tags == 'success' %}
+                    <i class="fas fa-check-circle ms-2 me-3"></i>
+                {% elif message.tags == 'error' %}
+                    <i class="fas fa-times-circle ms-2"></i>
+                {% elif message.tags == 'info' %}
+                    <i class="fas fa-info-circle ms-2"></i>
+                {% elif message.tags == 'warning' %}
+                    <i class="fas fa-exclamation-circle ms-2"></i>
+                {% endif %}
+
+                <span class="flex-grow-1">{{ message }}</span>
+
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}
