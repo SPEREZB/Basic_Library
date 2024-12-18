@@ -1,30 +1,41 @@
 import json
 from tkinter import image_names
+import time
+
+from django.core.paginator import Paginator
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from unicodedata import name
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http.response import JsonResponse
+from django.contrib import messages
 from .models import Libro
 from .forms import LibroForm 
 from django.views import View
 # Create your views here. 
 def inicio(request):
+    messages.success(request, '¡BIENVENIDO!')
     return render(request,'paginas/inicio.html') 
   
 def nosotros(request):
    return render(request,'paginas/nosotros.html')
 
 def libros(request):
-    libros=Libro.objects.all() 
-    return render(request,'libros/index.html',{'libros':libros})
+    libros = Libro.objects.all()
+    paginator = Paginator(libros, 10)  # 10 libros por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'libros/index.html', {'page_obj': page_obj})
 
 def crear(request): 
     formulario= LibroForm(request.POST or None,request.FILES or None)
     if formulario.is_valid():
+        messages.success(request, '¡Libro creado exitosamente!')
         formulario.save()
-        return redirect('libros') 
+        time.sleep(3)
+        return redirect('libros')
+    messages.error(request, '¡Hubo un error al crear el libro!')
     return render(request,'libros/crear.html',{'formulario':formulario})
   
 def editar(request,id):
