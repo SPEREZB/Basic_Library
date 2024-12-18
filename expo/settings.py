@@ -76,15 +76,11 @@ WSGI_APPLICATION = 'expo.wsgi.application'
  
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'HOST': 'localhost',
-         'PORT': '3306',
-          'USER': 'root',
-           'PASSWORD': '123',
-         'NAME': 'libreria', 
-           'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"} 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # Asegúrate de que `BASE_DIR` esté definido.
     }
 }
+
  
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

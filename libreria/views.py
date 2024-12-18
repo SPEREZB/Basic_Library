@@ -59,12 +59,12 @@ class LibrosView(View):
 
     def get(self):
         libro3= list(Libro.objects.values()) 
-        datos3={'message':"Success22",'libro3':libro3} 
+        datos3={'message':"Success",'libro3':libro3}
         return JsonResponse(datos3)
 
     def post(self, request): 
         jd= json.loads(request.body)  
         Libro.objects.create(nombre=jd['nombre'],imagenes=jd['imagenes'],descripcion=jd['descripcion'])
-        datos= {'message':"Successxx"}
+        datos= {'message':"Success"}
         return JsonResponse(datos) 
  
