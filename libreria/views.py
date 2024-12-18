@@ -1,13 +1,9 @@
 import json
-from tkinter import image_names
 import time
-
 from django.core.paginator import Paginator
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from unicodedata import name
 from django.shortcuts import redirect, render
-from django.http import HttpResponse, HttpResponseRedirect
 from django.http.response import JsonResponse
 from django.contrib import messages
 from .models import Libro
