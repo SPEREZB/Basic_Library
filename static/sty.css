@@ -1,0 +1,14 @@
+.position-fixed {
+    position: fixed !important;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+}
+.alert {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.alert.show {
+    opacity: 1;
+}
