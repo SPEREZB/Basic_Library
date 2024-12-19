@@ -5,7 +5,13 @@
   <div class="row g-3 mb-3">
     {% for campo in formulario %}
       {% if forloop.counter < 3 %}
-        <div class="col-md-6">
+        <div class="col-md-6 text-start">
+               {% if campo.label == "Titulo" %}
+            <i class="fas fa-book me-2 text-primary"></i>
+          {% elif campo.label == "Autor" %}
+            <i class="fas fa-user me-2 text-secondary"></i>
+
+          {% endif %}
           <label for="{{ campo.id }}" class="form-label">{{ campo.label }}</label>
 
           {% if campo.field.widget.input_type == 'select' %}
@@ -28,7 +34,16 @@
   <div class="row g-3 mb-3">
     {% for campo in formulario %}
       {% if forloop.counter > 2 %}
-        <div class="col-md-6">
+        <div class="col-md-6 text-start">
+            {% if campo.label == "Categoría" %}
+            <i class="fas fa-tags me-2 text-success"></i>
+          {% elif campo.label == "Año de publicación" %}
+            <i class="fas fa-calendar-alt me-2 text-info"></i>
+          {% elif campo.label == "Imagen" %}
+            <i class="fas fa-image me-2 text-warning"></i>
+          {% elif campo.label == "Descripcion" %}
+          <i class="fas fa-align-left me-2 text-danger"></i>
+         {% endif %}
           <label for="{{ campo.id }}" class="form-label">{{ campo.label }}</label>
 
           {% if campo.field.widget.input_type == 'select' %}
