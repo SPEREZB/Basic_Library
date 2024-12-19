@@ -6,14 +6,13 @@
 
 {% include 'utilities/alert.html' %}
 
-<div class="card shadow-lg border-0 rounded-3 overflow-hidden">
+<div class="card shadow-lg border-0 rounded-3 overflow-hidden h-100">
   <div class="card-header bg-dark bg-gradient d-flex justify-content-between align-items-center py-3">
-    <h3 class="text-white mb-0 fw-bold">Gestión de Libros</h3>
-    <a href="{% url 'crear' %}" class="btn btn-success bg-gradient fw-semibold">Crear Libro</a>
+       <h2 class="card-title text-center text-white mb-4 fw-bold">Lista de Libros</h2>
+  <a href="{% url 'crear' %}" class="btn btn-success bg-gradient fw-semibold">Crear Libro</a>
   </div>
 
   <div class="card-body bg-secondary bg-gradient text-light p-4">
-    <h2 class="card-title text-center mb-4 fw-bold">Lista de Libros</h2>
     <div class="table-responsive">
       <table class="table table-striped table-dark table-hover align-middle">
         <thead class="bg-dark text-light">
@@ -37,8 +36,8 @@
             <td>{{ libro.categoria }}</td>
             <td>{{ libro.year }}</td>
             <td>
-              <img src="{{ libro.imagenes }}" alt="Imagen de {{ libro.nombre }}" class="img-fluid rounded shadow-sm" style="max-width: 80px;">
-            </td>
+         <img src="{{ libro.imagenes.url }}" alt="Imagen de {{ libro.nombre }}" class="img-fluid rounded shadow-sm" style="max-width: 80px;">
+</td>
             <td>{{ libro.descripcion }}</td>
             <td class="text-center">
               <a href="{% url 'editar' libro.id %}" class="btn btn-warning bg-gradient text-white btn-sm me-2 px-3">Editar</a>

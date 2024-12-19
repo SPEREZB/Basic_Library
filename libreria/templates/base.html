@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- FONT AWESOME-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
     href="/static/sty.css"
     />
   </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column" style="height: 100vh; overflow: hidden;">
 
   <!-- Header -->
   <header>
@@ -53,8 +53,8 @@
 
    <main class="flex-grow-1"  style="background: linear-gradient(135deg, #f8f9fa, #ced4da);">
 
-      <div class="row justify-content-center">
-        <div class="col-12 width-100 min-vh-100">
+      <div class="row justify-content-center h-100">
+        <div class="col-12 width-100">
           <div class="shadow rounded animate__animated animate__fadeInUp">
             <h3 class="text-center text-dark">
               {% block contenido %}
