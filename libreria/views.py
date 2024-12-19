@@ -19,7 +19,7 @@ def nosotros(request):
 
 def libros(request):
     libros = Libro.objects.all()
-    paginator = Paginator(libros, 10)  # 10 libros por página
+    paginator = Paginator(libros, 1)  # 10 libros por página
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'libros/index.html', {'page_obj': page_obj})
@@ -42,12 +42,14 @@ def editar(request,id):
     formulario= LibroForm(request.POST or None,request.FILES or None,instance=libros)
     if formulario.is_valid() and request.POST:
         formulario.save()
+        messages.success(request, '¡Libro editado exitosamente!')
         return redirect('libros') 
     return render(request,'libros/editar.html',{'formulario':formulario})
  
 def eliminar(request,id):
   libro= Libro.objects.get(id=id)
   libro.delete()
+  messages.success(request, '¡Libro eliminado exitosamente!')
   return redirect('libros')
 
 
