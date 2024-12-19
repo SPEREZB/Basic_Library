@@ -5,15 +5,30 @@
 {% block contenido %}
 
 {% include 'utilities/alert.html' %}
-<div class="p-5 bg-secondary">
-    <div class="container text-white">
-        <h1 class="display-3">BIENVENIDOS</h1>
-        <p class="lead">EMPEZAR A INGRESAR LIBROS</p>
-        <hr class="my-2">
-         
-        <p class="lead">
-            <a class="btn btn-dark btn-lg" href="{% url 'libros' %}" role="button">EMPEZAR</a>
+<div class="p-5 bg-secondary h-100 d-flex align-items-center">
+    <div class="container text-white text-center">
+        <h1 class="display-3 fw-bold">¡BIENVENIDOS!</h1>
+        <p class="lead fs-4">Descubre y organiza tu colección de libros</p>
+
+        <hr class="my-4 border-white opacity-75">
+
+        <div class="mb-4">
+            <img src="https://via.placeholder.com/150" alt="Libros" class="img-fluid rounded-circle shadow-lg">
+        </div>
+
+        <p class="mb-4 fs-5">
+            Gestiona tus libros de forma fácil y rápida con nuestra herramienta. Empieza a construir tu biblioteca hoy mismo.
         </p>
+
+        <p class="lead">
+            <a class="btn btn-outline-light btn-lg d-flex align-items-center justify-content-center gap-2"
+               href="{% url 'libros' %}" role="button">
+                <i class="fas fa-book"></i> EMPEZAR
+            </a>
+        </p>
+
+        <div class="bg-white rounded-pill mt-4 mx-auto" style="width: 150px; height: 5px;"></div>
     </div>
 </div>
+
 {% endblock %}

@@ -1,22 +1,54 @@
-<form  enctype="multipart/form-data" method="post">
-{% csrf_token %} 
-{% for campo in formulario %}
-    
-    <div class="mb-3">
-        <label for="" class="form-label">{{campo.label}} </label> 
-     <input 
-       type="{{campo.field.widget.input_type}}"
-       class="form-control" 
-       name="{{campo.name}}" 
-       id="" 
-       aria-describedby="helpId" 
-       placerholder="{{ campo.label }}" 
-       value="{{ campo.value | default:'' }}"/> 
-     <br> 
-    </div>
-    <div class="col-12 help-text">{{campo.errors}}</div>
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
 
-{% endfor %}
+  <!-- Primera fila: primeros tres campos -->
+  <div class="row g-3 mb-3">
+    {% for campo in formulario %}
+      {% if forloop.counter < 3 %}
+        <div class="col-md-6">
+          <label for="{{ campo.id }}" class="form-label">{{ campo.label }}</label>
 
-     <input name="" id="" class="btn btn-success bg-gradient" type="submit" value="ACEPTAR"/> 
+          {% if campo.field.widget.input_type == 'select' %}
+            <select id="{{ campo.id_for_label }}" class="form-select bg-dark text-light border-secondary" name="{{ campo.name }}">
+              <option selected disabled>{{ campo.label }}</option>
+              {% for option in campo.field.choices %}
+                <option value="{{ option.0 }}" {% if option.0 == campo.value %}selected{% endif %}>{{ option.1 }}</option>
+              {% endfor %}
+            </select>
+          {% else %}
+            <input type="{{ campo.field.widget.input_type }}" id="{{ campo.id }}" class="form-control bg-dark text-light border-secondary" name="{{ campo.name }}" placeholder="{{ campo.label }}" value="{{ campo.value | default:'' }}"/>
+          {% endif %}
+        </div>
+
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Segunda fila: últimos tres campos -->
+  <div class="row g-3 mb-3">
+    {% for campo in formulario %}
+      {% if forloop.counter > 2 %}
+        <div class="col-md-6">
+          <label for="{{ campo.id }}" class="form-label">{{ campo.label }}</label>
+
+          {% if campo.field.widget.input_type == 'select' %}
+            <select id="{{ campo.id_for_label }}" class="form-select bg-dark text-light border-secondary" name="{{ campo.name }}">
+              <option selected disabled>{{ campo.label }}</option>
+              {% for option in campo.field.choices %}
+                <option value="{{ option.0 }}" {% if option.0 == campo.value %}selected{% endif %}>{{ option.1 }}</option>
+              {% endfor %}
+            </select>
+          {% else %}
+            <input type="{{ campo.field.widget.input_type }}" id="{{ campo.id }}" class="form-control bg-dark text-light border-secondary" name="{{ campo.name }}" placeholder="{{ campo.label }}" value="{{ campo.value | default:'' }}"/>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Botones -->
+  <div class="text-end">
+    <button type="submit" class="btn btn-success bg-gradient">Guardar</button>
+ <a href="{% url 'libros' %}" class="btn btn-danger bg-gradient">Cancelar</a>
+  </div>
 </form>
