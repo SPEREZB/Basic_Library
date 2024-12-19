@@ -24,15 +24,18 @@ def libros(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'libros/index.html', {'page_obj': page_obj})
 
-def crear(request): 
-    formulario= LibroForm(request.POST or None,request.FILES or None)
-    if formulario.is_valid():
-        messages.success(request, '¡Libro creado exitosamente!')
-        formulario.save()
-        time.sleep(3)
-        return redirect('libros')
-    messages.error(request, '¡Hubo un error al crear el libro!')
-    return render(request,'libros/crear.html',{'formulario':formulario})
+def crear(request):
+    try:
+        formulario= LibroForm(request.POST or None,request.FILES or None)
+        if formulario.is_valid():
+            messages.success(request, '¡Libro creado exitosamente!')
+            formulario.save()
+            time.sleep(3)
+            return redirect('libros')
+        return render(request,'libros/crear.html',{'formulario':formulario})
+    except:
+        messages.error(request, '¡Hubo un error al crear el libro!')
+        return render(request,'libros/crear.html')
   
 def editar(request,id):
     libros= Libro.objects.get(id=id)
