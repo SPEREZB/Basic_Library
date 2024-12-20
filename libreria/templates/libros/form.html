@@ -53,7 +53,14 @@
                 <option value="{{ option.0 }}" {% if option.0 == campo.value %}selected{% endif %}>{{ option.1 }}</option>
               {% endfor %}
             </select>
-          {% else %}
+          {% elif campo.field.widget.input_type == 'file' %}
+            <br>
+                  <label id="custom-file" class="custom-file-upload">
+                    <input type="file" name="archivo" accept=".png, .jpeg" id="{{ campo.id }}" style="display: none;" onchange="updateFileName(this)">
+                    <span id="select-file-text">Seleccionar archivo</span>
+                    <span id="file-name" style="display:none;"></span>
+                </label>
+{% else %}
             <input type="{{ campo.field.widget.input_type }}" id="{{ campo.id }}" class="form-control bg-dark text-light border-secondary" name="{{ campo.name }}" placeholder="{{ campo.label }}" value="{{ campo.value | default:'' }}"/>
           {% endif %}
         </div>
@@ -67,3 +74,32 @@
  <a href="{% url 'libros' %}" class="btn btn-danger bg-gradient">Cancelar</a>
   </div>
 </form>
+
+   <script>
+        function updateFileName(input) {
+           const label = input.parentElement;
+    const fileNameSpan = document.getElementById("file-name");
+    const selectFileTextSpan = document.getElementById("select-file-text");
+
+    if (input.files.length > 0) {
+        // Cambiar texto al nombre del archivo
+        fileNameSpan.style.display = "inline";
+        selectFileTextSpan.style.display = "none";
+        fileNameSpan.textContent = input.files[0].name;
+
+        // Aplicar la clase "selected" al label
+        label.classList.add("selected");
+    } else {
+        // Revertir los cambios si no hay archivo seleccionado
+        fileNameSpan.style.display = "none";
+        selectFileTextSpan.style.display = "inline";
+        label.classList.remove("selected");
+    }
+        }
+
+        function limitarPunto() {
+            var input = document.getElementById('nombre_archivo_input');
+            input.value = input.value.replace(/\./g, '');
+        }
+
+    </script>
