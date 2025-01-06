@@ -1,7 +1,6 @@
 <form enctype="multipart/form-data" method="post">
   {% csrf_token %}
 
-  <!-- Primera fila: primeros tres campos -->
   <div class="row g-3 mb-3">
     {% for campo in formulario %}
       {% if forloop.counter < 3 %}
@@ -30,7 +29,6 @@
     {% endfor %}
   </div>
 
-  <!-- Segunda fila: últimos tres campos -->
   <div class="row g-3 mb-3">
     {% for campo in formulario %}
       {% if forloop.counter > 2 %}
@@ -68,11 +66,16 @@
     {% endfor %}
   </div>
 
-  <!-- Botones -->
-  <div class="text-end">
-    <button type="submit" class="btn btn-success bg-gradient">Guardar</button>
- <a href="{% url 'libros' %}" class="btn btn-danger bg-gradient">Cancelar</a>
-  </div>
+<div class="text-end">
+  <button type="submit" class="btn btn-success bg-gradient">
+    <i class="fas fa-save"></i> Guardar
+  </button>
+
+  <a href="{% url 'libros' %}" class="btn btn-danger bg-gradient">
+    <i class="fas fa-times-circle"></i> Cancelar
+  </a>
+</div>
+
 </form>
 
    <script>
