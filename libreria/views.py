@@ -19,7 +19,7 @@ def nosotros(request):
 
 def libros(request):
     libros = Libro.objects.all()
-    paginator = Paginator(libros, 1)  # 10 libros por página
+    paginator = Paginator(libros, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'libros/index.html', {'page_obj': page_obj})
@@ -51,6 +51,10 @@ def eliminar(request,id):
   libro.delete()
   messages.success(request, '¡Libro eliminado exitosamente!')
   return redirect('libros')
+
+def descargar(request, libro_id):
+    print("DESCARGA DESDE FIREBASE")
+    return redirect('libros')
 
 
 class LibrosView(View):  
