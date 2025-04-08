@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'expo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',  # Asegúrate de que `BASE_DIR` esté definido.
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
